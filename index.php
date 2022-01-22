@@ -5,20 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>MC Cheer UP form</title>
-    <script type="text/javascript"></script>
+    <script src="./js/jquery-2.1.3.min.js"></script>
     <link rel="stylesheet" href="./css/sample.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 </head>
 
-
-
 <body>
     <h1 class="headerfont">MC CheerUP</h1>
-    <form class="center" action="?" method="post">
-    <select class="box" name="master_name" id="">
-    <option value="" selected='selected'>社員名前</option>
+    <form class="center" action="?" method="post" name="enter">
+    <select class="box" name="master_name" id="" required>
+    <option value="" selected='selected'>選択してください</option>
                 <option value="1" data-val="1">孫悟空</option>
                 <option value="2" data-val="1">孫悟飯</option>
                 <option value="3" data-val="1">孫悟天</option>
@@ -36,19 +34,26 @@
                 <option value="15" data-val="5">パン</option>
     </select>
     <div class="parts">
-        <p class="parts"><input class="buttonbox" type="submit" formaction="read_personal.php" value="みんなからのCheerUP"></p>
-        <p class="parts"><input class="buttonbox" type="submit" formaction="form.php" value="みんなをCheerUP"></p>
+        <p class="parts"><input class="buttonbox" type="submit" formaction="read_personal.php" value="みんなからのCheerUP" id="confirm"></p>
+        <p class="parts"><input class="buttonbox" type="submit" formaction="form.php" value="みんなをCheerUP" id="register"></p>
     </div>
-    
-
-    <!-- <p> <a href="form.php">みんなを応援する</a></p> -->
-    <!-- <p> <a href="read_personal.php">自分の応援を見る</a></p> -->
     </form>
-
-    <!-- <form action="form.php">
-    <p><input type="submit" value="みんなを応援する"></p>
-    </form> -->
 </body>
+
+<script>
+    $('#confirm').on('click', function(){
+        var result=checkForm();
+    })
+    
+    function checkForm(){
+    if(document.enter.master_name.value == ""){
+        alert("名前を選択して下さい。");
+	return false;
+    }else{
+	return true;
+    }
+}
+</script>
 
 
 </html>

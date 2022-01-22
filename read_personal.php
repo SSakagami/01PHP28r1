@@ -9,18 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Shippori+Antique&display=swap" rel="stylesheet">
 </head>
 
- 
-
-
-<!-- 
-<table>
-<tr>
-    <th>名前</th><th>日時</th>
-    <th>案件名</th><th>内容</th><th>評価</th>
-    <th>依頼先部署</th><th>依頼先担当者</th>
-</tr> </table> -->
-
-
 
 <?php
 $mname = $_POST["master_name"];
@@ -66,30 +54,74 @@ for($i==1; $i<16; $i++){
 		$mnamestr = $boxname[$i-1];
 	}
 }
-$list = fopen('data1.csv','r');
-$h = 0;
-$newarray=array();
-$evalsum =0;
-$count=0;
-$evalave=0;
 
-while ($array1 = fgetcsv($list)) {
-	for ($i = 0; $i < count($array1); $i++){
-		$newarray[$h][$i] = $array1[$i];
-		}
-	$h++;
-}
+//1.  DB接続します
+try {
+	//Password:MAMP='root',XAMPP=''
+	$pdo = new PDO('mysql:dbname=gs_db;charset=utf8;host=localhost','root','root');
+  } catch (PDOException $e) {
+	exit('DBConnectError:'.$e->getMessage());
+  }
+  
+  //２．SQL文を用意(データ取得：SELECT)
+  $stmt = $pdo->prepare("SELECT * FROM gs_CU_table WHERE cname=$mname ");
+  
+  //3. 実行
+  $status = $stmt->execute();
+  
 
-for($j=0;$j<$h+1; $j++){
-	if($newarray[$j][6]==$mname){
-		$evalsum += $newarray[$j][4];
+
+  //4．データ表示
+  $view="";
+  $evalsum =0;
+  $count=0;
+  $evalave=0;
+  if($status==false) {
+	  //execute（SQL実行時にエラーがある場合）
+	$error = $stmt->errorInfo();
+	exit("ErrorQuery:".$error[2]);
+  
+  }else{
+	//Selectデータの数だけ自動でループしてくれる
+	//FETCH_ASSOC=http://php.net/manual/ja/pdostatement.fetch.php
+	while( $result = $stmt->fetch(PDO::FETCH_ASSOC)){ 
+	//   $view .= "<p>";
+	//   $view .= $result['indate'].':'.$result['name'].' '.$result['email'].'   '.$result['naiyou'];
+	//   $view .= "</p>";
+	    $evalsum += $result['eval'];
 		$count++;
-		$results .="<tr><td class='tableborder3'>".$newarray[$j][1]."</td><td class='tableborder3'>".$newarray[$j][2]."</td><td class='tableborder3'>".$newarray[$j][3]."</td><td class='tableborder3'>"."<div class='evalstar'><img class='evalstar' src='./img/eval".$newarray[$j][4].".jpeg' alt=''></div></td></tr>";
+		$view .="<tr><td class='tableborder3'>".$result['date']."</td><td class='tableborder3'>".$result['title']."</td><td class='tableborder3'>".$result['cont']."</td><td class='tableborder3'>"."<div class='evalstar'><img class='evalstar' src='./img/eval".$result['eval'].".jpeg' alt=''></div></td></tr>";
 	}
-}
+  }
+
+
+
+
+
+// $list = fopen('data1.csv','r');
+// $h = 0;
+// $newarray=array();
+// $evalsum =0;
+// $count=0;
+// $evalave=0;
+
+// while ($array1 = fgetcsv($list)) {
+// 	for ($i = 0; $i < count($array1); $i++){
+// 		$newarray[$h][$i] = $array1[$i];
+// 		}
+// 	$h++;
+// }
+
+// for($j=0;$j<$h+1; $j++){
+// 	if($newarray[$j][6]==$mname){
+// 		$evalsum += $newarray[$j][4];
+// 		$count++;
+// 		$results .="<tr><td class='tableborder3'>".$newarray[$j][1]."</td><td class='tableborder3'>".$newarray[$j][2]."</td><td class='tableborder3'>".$newarray[$j][3]."</td><td class='tableborder3'>"."<div class='evalstar'><img class='evalstar' src='./img/eval".$newarray[$j][4].".jpeg' alt=''></div></td></tr>";
+// 	}
+// }
 $evalave=round($evalsum/$count,1);
 // echo $results;
-fclose($list);
+// fclose($list);
  
 ?>
 
@@ -108,7 +140,7 @@ fclose($list);
 			<th  class="tableborder3">CheerUPポイント</th>
 			
 		</tr>
-		<?= $results ?>
+		<?= $view ?>
 	</table>
  
 	<div><a href="index.php">ホーム</a></div>
