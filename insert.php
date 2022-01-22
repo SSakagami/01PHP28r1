@@ -52,7 +52,8 @@ if($status==false){
   $error = $stmt->errorInfo();
   exit("ErrorMassage:".$error[2]);
 }else{
-  break;
+  //５．index.phpへリダイレクト
+  // header('Location: index.php');
 }
 ?>
 
