@@ -8,17 +8,17 @@
     <script type="text/javascript"></script>
     <link rel="stylesheet" href="./css/sample.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 </head>
 
 
 
 <body>
     <h1 class="headerfont">MC CheerUP</h1>
-    <form class="center" action="?" method="post">
+    <form class="center" action="read_admin.php" method="post">
     <select class="box" name="master_name" id="">
-    <option value="" selected='selected'>社員名前</option>
+    <option value="" selected='selected'>社員名</option>
                 <option value="1" data-val="1">孫悟空</option>
                 <option value="2" data-val="1">孫悟飯</option>
                 <option value="3" data-val="1">孫悟天</option>
@@ -36,7 +36,7 @@
                 <option value="15" data-val="5">パン</option>
     </select>
     <div class="parts">
-        <p class="parts"><input class="buttonbox" type="submit" formaction="read_admin.php" value="集計"></p>
+        <p class="parts"><input class="buttonbox" type="submit"  value="集計"></p>
     </div>
     </form>
 </body>
