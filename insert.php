@@ -14,9 +14,12 @@ $cname = $_POST["client_name"];
 try {
   //Password:MAMP='root',XAMPP=''
   $pdo = new PDO('mysql:dbname=gamio5_gs_db;charset=utf8;host=mysql57.gamio5.sakura.ne.jp','gamio5','sS_3104_Ss');
+  // $pdo = new PDO('mysql:dbname=gs_db;charset=utf8;host=localhost','root','root');
+
 } catch (PDOException $e) {
   exit('DBConnectError:'.$e->getMessage());
 }
+
 
 
 // ３．SQL文を用意(データ登録：INSERT)

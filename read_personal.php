@@ -22,30 +22,6 @@ function h ($value) {
 }
 /////////////////////////////////////////////////
 
-// admin用一覧表示//////////////////////////////////
-// if( ($fp = fopen("data1.csv","r"))== false ){
-// 	die("CSVファイル読み込みエラー");
-// }
- 
-// while (($array = fgetcsv($fp)) !== FALSE) {
-	
-// 	//空行を取り除く
-// 	if(!array_diff($array, array(''))){
-// 		continue;
-// 	}
-	
-// 	echo "<br>";
-// 	echo "<tr>";
-// 	for($i = 0; $i < count($array); ++$i ){
-// 		$elem = nl2br($array[$i]);
-//         $elem = $elem === "" ?  "&nbsp;" : $elem;
-// 		echo("<td>".$elem."</td>");
-// 	}
-// 	echo "</tr>";	
-// }
-// fclose($fp);
-/////////////////////////////////////////////////
-
 //personal表示用/////////////////////////////////
 $mnamestr="";
 
@@ -59,6 +35,7 @@ for($i==1; $i<16; $i++){
 try {
 	//Password:MAMP='root',XAMPP=''
 	$pdo = new PDO('mysql:dbname=gamio5_gs_db;charset=utf8;host=mysql57.gamio5.sakura.ne.jp','gamio5','sS_3104_Ss');
+	// $pdo = new PDO('mysql:dbname=gs_db;charset=utf8;host=localhost','root','root');
   } catch (PDOException $e) {
 	exit('DBConnectError:'.$e->getMessage());
   }

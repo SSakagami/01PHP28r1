@@ -30,34 +30,39 @@ for($i==1; $i<16; $i++){
 
 <body>
     <h1 class="headerfont">MC CheerUP Form</h1>
+    
+    <div class="center1">
+      <div ><img class="imgzone" src="./img/<?= $mname ?>.jpeg" alt=""></div>
+    </div>
+
     <form method="post" action="insert.php">
       <div class="center">
       <table class="center tableborder">
         <tr>
           <th class="tableborder1">氏名：</th>
-          <td class="tableborder2"><p>
-          <select class="box" name="name">
+          <td class="tableborder2">
+            <p><select class="box" name="name">
                 <option value="<?=$mname?>"><?=$mnamestr?></option>
-            </select>
-          </p></td>
+            </select></p>
+          </td>
         </tr>
         <tr>
           <th class="tableborder1">依頼先：</th>
-          <td class="tableborder2"><p>
-          <select class="parent box"  name="client_dep" id="">
+          <td class="tableborder2">
+            <p><select class="parent box"  name="client_dep" id="">
                 <option value="" selected='selected'>部署を選択</option>
                 <option value="1">電力DX推進室</option>
                 <option value="2">MCリテールエナジー</option>
                 <option value="3">国内水事業チーム</option>
                 <option value="4">欧州電力サービスチーム</option>
                 <option value="5">オフグリッドチーム</option>
-            </select>
-          </p></td>
+            </select></p>
+          </td>
         </tr>        
         <tr>
           <th class="tableborder1">依頼先氏名：</th>
-          <td class="tableborder2"><p>
-          <select class="children box" name="client_name" disabled>
+          <td class="tableborder2">
+            <p><select class="children box" name="client_name" disabled>
                 <option value="" selected='selected'>依頼先を選択</option>
                 <option value="1" data-val="1">孫悟空さん</option>
                 <option value="2" data-val="1">孫悟飯さん</option>
@@ -74,8 +79,8 @@ for($i==1; $i<16; $i++){
                 <option value="13" data-val="5">ブゥさん</option>
                 <option value="14" data-val="5">ビーデルさん</option>
                 <option value="15" data-val="5">パンさん</option>
-            </select>
-          </p></td>
+            </select></p>
+          </td>
         </tr>        
         <tr>
           <th class="tableborder1"> お願いした日付：</th>
