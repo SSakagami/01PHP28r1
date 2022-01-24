@@ -34,8 +34,8 @@ for($i==1; $i<16; $i++){
 //1.  DB接続します
 try {
 	//Password:MAMP='root',XAMPP=''
-	$pdo = new PDO('mysql:dbname=gamio5_gs_db;charset=utf8;host=mysql57.gamio5.sakura.ne.jp','gamio5','sS_3104_Ss');
-	// $pdo = new PDO('mysql:dbname=gs_db;charset=utf8;host=localhost','root','root');
+	$pdo = new PDO();
+	// $pdo = new PDO();
   } catch (PDOException $e) {
 	exit('DBConnectError:'.$e->getMessage());
   }
